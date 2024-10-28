@@ -1,5 +1,6 @@
 /// This example shows how to describe the adapter in use.
 async fn run() {
+    // 它允许在 target_arch 为 "wasm32" 时忽略未使用的变量。
     #[cfg_attr(target_arch = "wasm32", allow(unused_variables))]
     let adapter = {
         let instance = wgpu::Instance::default();
