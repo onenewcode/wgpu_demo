@@ -56,12 +56,12 @@ const EXAMPLES: &[ExampleDesc] = &[
         webgl: true,
         webgpu: true,
     },
-    // ExampleDesc {
-    //     name: "hello_windows",
-    //     function: wgpu_examples::hello_windows::main,
-    //     webgl: false,  // Native only example
-    //     webgpu: false, // Native only example
-    // },
+    ExampleDesc {
+        name: "hello_windows",
+        function: wgpu_examples::hello_windows::main,
+        webgl: false,  // Native only example
+        webgpu: false, // Native only example
+    },
     // ExampleDesc {
     //     name: "hello_workgroups",
     //     function: wgpu_examples::hello_workgroups::main,
