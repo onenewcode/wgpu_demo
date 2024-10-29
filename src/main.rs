@@ -50,12 +50,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: false, // No canvas for WebGL
     //     webgpu: true,
     // },
-    // ExampleDesc {
-    //     name: "hello_triangle",
-    //     function: wgpu_examples::hello_triangle::main,
-    //     webgl: true,
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "hello_triangle",
+        function: wgpu_examples::hello_triangle::main,
+        webgl: true,
+        webgpu: true,
+    },
     // ExampleDesc {
     //     name: "hello_windows",
     //     function: wgpu_examples::hello_windows::main,
