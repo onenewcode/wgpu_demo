@@ -509,5 +509,3 @@ pub fn parse_url_query_string<'a>(query: &'a str, search_key: &str) -> Option<&'
 
     None
 }
-
-

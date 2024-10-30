@@ -53,7 +53,7 @@ fn create_vertices() -> (Vec<Vertex>, Vec<u16>) {
     let index_data: &[u16] = &[
         0, 1, 2, 2, 3, 0, // top
         4, 5, 6, 6, 7, 4, // bottom
-        8, 9, 10, 10, 11, 8, // right 
+        8, 9, 10, 10, 11, 8, // right
         12, 13, 14, 14, 15, 12, // left
         16, 17, 18, 18, 19, 16, // front
         20, 21, 22, 22, 23, 20, // back
@@ -96,14 +96,13 @@ impl Example {
         let projection = glam::Mat4::perspective_rh(consts::FRAC_PI_4, aspect_ratio, 1.0, 10.0);
         let view = glam::Mat4::look_at_rh(
             glam::Vec3::new(1.5f32, -5.0, 3.0), // 相机位置
-            glam::Vec3::ZERO, // 表示相机的朝向。
-            glam::Vec3::Z, // 表示相机的向上方向。
+            glam::Vec3::ZERO,                   // 表示相机的朝向。
+            glam::Vec3::Z,                      // 表示相机的向上方向。
         );
         // 行代码将透视投影矩阵和观察矩阵相乘，得到最终的变换矩阵。
         projection * view
     }
 }
-
 
 impl crate::framework::Example for Example {
     fn optional_features() -> wgpu::Features {
@@ -180,12 +179,12 @@ impl crate::framework::Example for Example {
             sample_count: 1, // 多重采样抗锯齿 (MSAA) 的样本数量。设置为 1 表示不使用多重采样，即不启用抗锯齿。
             dimension: wgpu::TextureDimension::D2, // 指定纹理的维度
             format: wgpu::TextureFormat::R8Uint, //指定纹理中每个像素的数据格式
-            usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST, // 
+            usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST, //
             view_formats: &[],
         });
         let texture_view = texture.create_view(&wgpu::TextureViewDescriptor::default());
         queue.write_texture(
-            texture.as_image_copy(),//将纹理转换成一个可复制的图片
+            texture.as_image_copy(), //将纹理转换成一个可复制的图片
             &texels,
             wgpu::ImageDataLayout {
                 offset: 0,
@@ -226,7 +225,8 @@ impl crate::framework::Example for Example {
         let vertex_buffers = [wgpu::VertexBufferLayout {
             array_stride: vertex_size as wgpu::BufferAddress,
             step_mode: wgpu::VertexStepMode::Vertex,
-            attributes: &[ // 定义顶点属性和偏移量
+            attributes: &[
+                // 定义顶点属性和偏移量
                 wgpu::VertexAttribute {
                     format: wgpu::VertexFormat::Float32x4,
                     offset: 0,

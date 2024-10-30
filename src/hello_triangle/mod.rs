@@ -60,8 +60,9 @@ async fn run(event_loop: EventLoop<()>, window: Window) {
     let render_pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
         label: None,
         layout: Some(&pipeline_layout),
-        vertex: wgpu::VertexState { // 顶点着色器的状态
-            module: &shader, // 着色器模块
+        vertex: wgpu::VertexState {
+            // 顶点着色器的状态
+            module: &shader,        // 着色器模块
             entry_point: "vs_main", //程序入口
             buffers: &[],
             compilation_options: Default::default(), //定义编译选项
