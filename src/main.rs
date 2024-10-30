@@ -92,12 +92,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: false, // No compute
     //     webgpu: true,
     // },
-    // ExampleDesc {
-    //     name: "shadow",
-    //     function: wgpu_examples::shadow::main,
-    //     webgl: true,
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "shadow",
+        function: wgpu_examples::shadow::main,
+        webgl: true,
+        webgpu: true,
+    },
     ExampleDesc {
         name: "skybox",
         function: wgpu_examples::skybox::main,
