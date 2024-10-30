@@ -14,12 +14,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: false, // No compute
     //     webgpu: true,
     // },
-    // ExampleDesc {
-    //     name: "bunnymark",
-    //     function: wgpu_examples::bunnymark::main,
-    //     webgl: true,
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "bunnymark",
+        function: wgpu_examples::bunnymark::main,
+        webgl: true,
+        webgpu: true,
+    },
     // ExampleDesc {
     //     name: "conservative_raster",
     //     function: wgpu_examples::conservative_raster::main,

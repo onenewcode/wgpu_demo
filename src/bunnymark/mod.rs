@@ -9,7 +9,7 @@ use winit::{
 
 const MAX_BUNNIES: usize = 1 << 20;
 const BUNNY_SIZE: f32 = 0.15 * 256.0;
-const GRAVITY: f32 = -9.8 * 100.0;
+const GRAVITY: f32 = -9.8 * 100.0; //重力
 const MAX_VELOCITY: f32 = 750.0;
 
 #[repr(C)]
@@ -24,28 +24,30 @@ struct Globals {
 #[derive(Clone, Copy, Zeroable)]
 struct Bunny {
     position: [f32; 2],
-    velocity: [f32; 2],
+    velocity: [f32; 2], //速度
     color: u32,
     _pad: u32,
 }
 
 impl Bunny {
+    //delta 是一个 f32 类型的参数，表示时间间隔；extent ，表示兔子运动的边界。
     fn update_data(&mut self, delta: f32, extent: &[u32; 2]) {
+        // 更新位置
         self.position[0] += self.velocity[0] * delta;
         self.position[1] += self.velocity[1] * delta;
+        // 上下方向的速度
         self.velocity[1] += GRAVITY * delta;
-
+        // 更新左右的速度不变，撞墙直接取反
         if (self.velocity[0] > 0.0 && self.position[0] + 0.5 * BUNNY_SIZE > extent[0] as f32)
             || (self.velocity[0] < 0.0 && self.position[0] - 0.5 * BUNNY_SIZE < 0.0)
         {
             self.velocity[0] *= -1.0;
         }
-
+        // Bottom boundary（边界） check
         if self.velocity[1] < 0.0 && self.position[1] < 0.5 * BUNNY_SIZE {
             self.velocity[1] *= -1.0;
         }
-
-        // Top boundary check
+        // Top boundary（边界） check
         if self.velocity[1] > 0.0 && self.position[1] + 0.5 * BUNNY_SIZE > extent[1] as f32 {
             self.velocity[1] *= -1.0;
         }
@@ -225,6 +227,7 @@ impl crate::framework::Example for Example {
                 })],
             }),
             primitive: wgpu::PrimitiveState {
+                // 它使用一系列的三角形来组成一个条带，每个三角形共享前一个三角形的两个顶点。这种拓扑类型通常用于绘制连续的几何形状，如网格或地形。
                 topology: wgpu::PrimitiveTopology::TriangleStrip,
                 strip_index_format: Some(wgpu::IndexFormat::Uint16),
                 ..wgpu::PrimitiveState::default()
