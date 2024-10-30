@@ -95,9 +95,9 @@ impl Example {
         // consts::FRAC_PI_4：表示视角的一半，即 π/4。 aspect_ratio：表示宽高比。 1.0：表示近裁剪面的距离。 10.0：表示远裁剪面的距离。
         let projection = glam::Mat4::perspective_rh(consts::FRAC_PI_4, aspect_ratio, 1.0, 10.0);
         let view = glam::Mat4::look_at_rh(
-            glam::Vec3::new(1.5f32, -5.0, 3.0), // 相机位置
-            glam::Vec3::ZERO,                   // 表示相机的朝向。
-            glam::Vec3::Z,                      // 表示相机的向上方向。
+            glam::Vec3::new(1.5f32, -5.0, 3.0),
+            glam::Vec3::ZERO,
+            glam::Vec3::Z,
         );
         // 行代码将透视投影矩阵和观察矩阵相乘，得到最终的变换矩阵。
         projection * view
@@ -162,7 +162,7 @@ impl crate::framework::Example for Example {
             bind_group_layouts: &[&bind_group_layout],
             push_constant_ranges: &[],
         });
-        // 创建纹理大小
+
         // Create the texture
         let size = 256u32;
         let texels = create_texels(size as usize);
@@ -257,7 +257,7 @@ impl crate::framework::Example for Example {
             }),
             // 一个用于渲染管线的图元状态（PrimitiveState），它是WebGPU API的一部分，用于指定如何渲染几何图形。下面是对这段代码的详细解释：
             primitive: wgpu::PrimitiveState {
-                // cull_mode: Some(wgpu::Face::Back), // 剔除模式，用于剔除背面（Back）的几何图形。
+                cull_mode: Some(wgpu::Face::Back),
                 ..Default::default()
             },
             depth_stencil: None,

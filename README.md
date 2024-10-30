@@ -314,3 +314,4 @@ fn get_include_code(key: &str, base_path: &str) -> Option<String> {
 
 # 概述
 ![alt text](image.png)
+![alt text](image-1.png)

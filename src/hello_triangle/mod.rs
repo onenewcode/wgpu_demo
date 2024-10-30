@@ -73,7 +73,10 @@ async fn run(event_loop: EventLoop<()>, window: Window) {
             compilation_options: Default::default(),
             targets: &[Some(swapchain_format.into())], //设置渲染格式
         }),
-        primitive: wgpu::PrimitiveState::default(),
+        primitive:wgpu::PrimitiveState {
+            topology: wgpu::PrimitiveTopology::LineStrip, 
+            ..Default::default()
+        },
         depth_stencil: None,
         multisample: wgpu::MultisampleState::default(),
         multiview: None,

@@ -25,8 +25,8 @@ var r_color: texture_2d<u32>;
 
 @fragment
 fn fs_main(vertex: VertexOutput) -> @location(0) vec4<f32> {
-    // 着色渲染
-    let tex = textureLoad(r_color, vec2<i32>(vertex.tex_coord * 25.0), 0);
+    // 着色渲染 这将把 [0, 1] 范围内的纹理坐标映射到 [0, 256] 范围内的整数坐标。
+    let tex = textureLoad(r_color, vec2<i32>(vertex.tex_coord * 256.0), 0);
     let v = f32(tex.x) / 255.0;
     return vec4<f32>(1.0 - (v * 5.0), 1.0 - (v * 15.0), 1.0 - (v * 50.0), 1.0);
 }
