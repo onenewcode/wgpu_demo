@@ -365,7 +365,7 @@ impl FrameCounter {
         }
     }
 }
-
+/// 启动函数
 async fn start<E: Example>(title: &str) {
     init_logger();
 

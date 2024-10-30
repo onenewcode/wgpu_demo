@@ -26,12 +26,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: false,  // No conservative raster
     //     webgpu: false, // No conservative raster
     // },
-    // ExampleDesc {
-    //     name: "cube",
-    //     function: wgpu_examples::cube::main,
-    //     webgl: true,
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "cube",
+        function: wgpu_examples::cube::main,
+        webgl: true,
+        webgpu: true,
+    },
     ExampleDesc {
         name: "hello",
         function: wgpu_examples::hello::main,
@@ -134,12 +134,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: false,  // No canvas for WebGL
     //     webgpu: false, // No timestamp queries
     // },
-    // ExampleDesc {
-    //     name: "uniform_values",
-    //     function: wgpu_examples::uniform_values::main,
-    //     webgl: false, // No compute
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "uniform_values",
+        function: wgpu_examples::uniform_values::main,
+        webgl: false, // No compute
+        webgpu: true,
+    },
     // ExampleDesc {
     //     name: "water",
     //     function: wgpu_examples::water::main,
