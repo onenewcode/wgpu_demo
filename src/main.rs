@@ -98,12 +98,12 @@ const EXAMPLES: &[ExampleDesc] = &[
     //     webgl: true,
     //     webgpu: true,
     // },
-    // ExampleDesc {
-    //     name: "skybox",
-    //     function: wgpu_examples::skybox::main,
-    //     webgl: true,
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "skybox",
+        function: wgpu_examples::skybox::main,
+        webgl: true,
+        webgpu: true,
+    },
     // ExampleDesc {
     //     name: "srgb_blend",
     //     function: wgpu_examples::srgb_blend::main,

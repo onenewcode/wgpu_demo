@@ -310,3 +310,7 @@ fn get_include_code(key: &str, base_path: &str) -> Option<String> {
 }
 ```
 上面的几十行代码就是一套完整的预处理逻辑，它在每次程序编译时自动检查 wgsl/ 目录下的待处理着色器有没有发生变化，如果有变化，就重新处理并在 wgsl_preprocessed/ 目录下写入一个同名的处理后的着色器。
+
+
+# 概述
+![alt text](image.png)

@@ -6,5 +6,6 @@ pub mod hello;
 pub mod hello_compute;
 pub mod hello_triangle;
 pub mod hello_windows;
+pub mod skybox;
 pub mod uniform_values;
 pub mod utils;
