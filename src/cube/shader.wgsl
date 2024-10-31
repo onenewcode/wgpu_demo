@@ -18,7 +18,7 @@ fn vs_main(
     result.position = transform * position;
     return result;
 }
-
+// 纹理数据一个数组
 @group(0)
 @binding(1)
 var r_color: texture_2d<u32>;

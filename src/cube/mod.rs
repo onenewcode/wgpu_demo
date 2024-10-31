@@ -61,6 +61,7 @@ fn create_vertices() -> (Vec<Vertex>, Vec<u16>) {
 
     (vertex_data.to_vec(), index_data.to_vec())
 }
+// 纹理数据
 fn create_texels(size: usize) -> Vec<u8> {
     (0..size * size)
         .map(|id| {
