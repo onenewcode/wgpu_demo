@@ -1,7 +1,7 @@
 use bytemuck::{Pod, Zeroable};
 use std::{f32::consts, mem::size_of};
 use wgpu::util::DeviceExt;
-
+const MODEL_CENTER_Y: f32 = 2.0;
 #[repr(C)]
 #[derive(Clone, Copy, Pod, Zeroable)]
 struct Vertex {
@@ -79,8 +79,40 @@ fn create_texels(size: usize) -> Vec<u8> {
         })
         .collect()
 }
+struct Camera {
+    screen_size: (u32, u32),
+    angle_y: f32,
+    angle_xz: f32,
+    dist: f32,
+}
+impl Camera {
+    fn to_uniform_data(&self) -> [f32; 16 * 3 + 4] {
+        let aspect = self.screen_size.0 as f32 / self.screen_size.1 as f32;
+        let proj = glam::Mat4::perspective_rh(consts::FRAC_PI_4, aspect, 1.0, 50.0);
+        let cam_pos = glam::Vec3::new(
+            self.angle_xz.cos() * self.angle_y.sin() * self.dist,
+            self.angle_xz.sin() * self.dist + MODEL_CENTER_Y,
+            self.angle_xz.cos() * self.angle_y.cos() * self.dist,
+        );
+        let view = glam::Mat4::look_at_rh(
+            cam_pos,
+            glam::Vec3::new(0f32, MODEL_CENTER_Y, 0.0),
+            glam::Vec3::Y,
+        );
+        let proj_inv = proj.inverse();
+
+        let mut raw = [0f32; 16 * 3 + 4];
+        raw[..16].copy_from_slice(&AsRef::<[f32; 16]>::as_ref(&proj)[..]);
+        raw[16..32].copy_from_slice(&AsRef::<[f32; 16]>::as_ref(&proj_inv)[..]);
+        raw[32..48].copy_from_slice(&AsRef::<[f32; 16]>::as_ref(&view)[..]);
+        raw[48..51].copy_from_slice(AsRef::<[f32; 3]>::as_ref(&cam_pos));
+        raw[51] = 1.0;
+        raw
+    }
+}
 
 struct Example {
+    camera: Camera,
     vertex_buf: wgpu::Buffer,
     index_buf: wgpu::Buffer,
     index_count: usize,
@@ -312,9 +344,16 @@ impl crate::framework::Example for Example {
         } else {
             None
         };
-
+        // 添加摄像头
+        let camera = Camera {
+            screen_size: (config.width, config.height),
+            angle_xz: 0.2,
+            angle_y: 0.2,
+            dist: 20.0,
+        };
         // Done
         Example {
+            camera,
             vertex_buf,
             index_buf,
             index_count: index_data.len(),
