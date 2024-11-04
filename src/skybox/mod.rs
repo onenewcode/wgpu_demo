@@ -28,6 +28,7 @@ const MODEL_CENTER_Y: f32 = 2.0;
 
 impl Camera {
     fn to_uniform_data(&self) -> [f32; 16 * 3 + 4] {
+        // 计算屏幕宽高比
         let aspect = self.screen_size.0 as f32 / self.screen_size.1 as f32;
         let proj = glam::Mat4::perspective_rh(consts::FRAC_PI_4, aspect, 1.0, 50.0);
         let cam_pos = glam::Vec3::new(

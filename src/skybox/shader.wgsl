@@ -2,16 +2,16 @@ struct SkyOutput {
     @builtin(position) position: vec4<f32>,
     @location(0) uv: vec3<f32>,
 };
-
+// 摄像头的数据
 struct Data {
     // from camera to screen
-    proj: mat4x4<f32>,
+    proj: mat4x4<f32>, // 从相机空间到屏幕空间的投影变换。
     // from screen to camera
-    proj_inv: mat4x4<f32>,
+    proj_inv: mat4x4<f32>, // 用于从屏幕空间到相机空间的投影变换。
     // from world to camera
-    view: mat4x4<f32>,
+    view: mat4x4<f32>, // 用于从世界空间到相机空间的视图变换。
     // camera position
-    cam_pos: vec4<f32>,
+    cam_pos: vec4<f32>, // 摄像头位置
 };
 @group(0)
 @binding(0)

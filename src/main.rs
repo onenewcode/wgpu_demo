@@ -140,12 +140,12 @@ const EXAMPLES: &[ExampleDesc] = &[
         webgl: false, // No compute
         webgpu: true,
     },
-    // ExampleDesc {
-    //     name: "water",
-    //     function: wgpu_examples::water::main,
-    //     webgl: false, // No RODS
-    //     webgpu: true,
-    // },
+    ExampleDesc {
+        name: "water",
+        function: wgpu_examples::water::main,
+        webgl: false, // No RODS
+        webgpu: true,
+    },
 ];
 
 fn get_example_name() -> Option<String> {

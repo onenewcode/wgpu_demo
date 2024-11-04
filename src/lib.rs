@@ -9,4 +9,5 @@ pub mod hello_windows;
 pub mod shadow;
 pub mod skybox;
 pub mod uniform_values;
+pub mod water;
 pub mod utils;
